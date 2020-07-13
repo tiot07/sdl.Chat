@@ -146,7 +146,13 @@ public class MainActivity extends AppCompatActivity {
                     activity.setState(State.Disconnected);
                     break;
                 case Agent.MSG_RECEIVED:
-                    activity.showMessage((ChatMessage) msg.obj);
+                    //activity.showMessage((ChatMessage) msg.obj);
+                    ChatMessage message = (ChatMessage) msg.obj;
+                    Log.d(TAG, "Sound: " + Integer.toString(message.sound));
+                    if (message.sound == 0) {
+                        activity.showMessage(message);
+                    }
+                    activity.soundPlayer.playConnected();
                     break;
             }
         }
